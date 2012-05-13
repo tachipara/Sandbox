@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
+	<link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.1.0.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.1.0.js"></script>
+    <script type="text/javascript">
+        var showMenu = false;
+        $("#menuButton").live("click", function(event) {
+            event.preventDefault();
+            if (!showMenu) {
+                $("#navbar").animate({
+                    marginLeft: "250px"
+                }, 300);
+                $(".ui-page-active").animate({
+                    marginLeft: "250px"
+                }, 300, function() {
+                    $("#menu").css("zIndex", 1);
+                    $("#index").css("position", "fixed");
+                    showMenu = true;
+                });
+            } else {
+                $("#menu").css("zIndex", -1);
+                $("#index").css("position", "static");
+                $("#navbar").animate({
+                    marginLeft: "0px"
+                }, 300);
+                $(".ui-page-active").animate({
+                    marginLeft: "0px"
+                }, 300, function() {
+                    showMenu = false;
+                });
+            }
+        });
+        $(function() {
+            $("#menu").show();
+        });
+    </script>
+    <style>
+        body {position: relative;}
+        #menu {
+            width: 250px !important;
+            z-index: -1;
+        }
+    </style>
+	<title>Test</title>
+</head>
+<body>
+    <div id="index" data-theme="b" data-role="page">
+        <div id="data-prefetch">
+            <a data-prefetch href="#menu"></a>
+        </div>
+        <div data-theme="b" data-role="header">
+            <a id="menuButton" href="#" class="ui-btn-left">Menu</a>
+            <h1>Header1</h1>
+        </div>
+        <div id="navbar" data-theme="b" data-role="header" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+            	<ul>
+                    <li>
+                    	<a data-theme="a" href="#">One</a>
+                    </li>
+                    <li>
+                    	<a data-theme="a" href="#">Two</a>
+                    </li>
+                    <li>
+                    	<a data-theme="a" href="#">Three</a>
+                    </li>
+                    <li>
+                    	<a data-theme="a" href="#">Four</a>
+                    </li>
+            	</ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <h1>Content Header1</h1>
+            <h2>Content Header2</h2>
+            <h3>Content Header3</h3>
+            <h4>Content Header4</h4>
+            <h5>Content Header5</h5>
+            <h6>Content Header6</h6>
+            <p>
+                <strong>Strong Text</strong>
+            </p>
+            <p>
+            	<b>Bold Text</b>
+            </p>
+            <p>
+                <i>Italic Text</i>
+            </p>
+            <p>Normal Text</p>
+        </div>
+        <ul data-theme="b" data-role="listview">
+            <li>
+            	<div data-role="collapsible">
+            		<h3>List Item1</h3>
+            		<p>Sample Text</p>
+            	</div>
+            </li>
+            <li>
+            	<div data-role="collapsible" data-theme="c">
+            		<h3>List Item2</h3>
+            		<p>Sample Text</p>
+            	</div>
+            </li>
+            <li>
+            	<div data-role="collapsible" data-theme="a">
+            		<h3>List Item3</h3>
+            		<p>Sample Text3</p>
+            	</div>
+            </li>
+        </ul>
+        <div data-theme="b" data-role="footer">
+            <small>This is a footer.</small>
+        </div>
+    </div>
+    <div id="menu" data-role="page">
+        <div data-theme="b" data-role="header">
+            <h1>Menu</h1>
+        </div>
+        <ul data-role="listview">
+            <li>
+                <a href="#">Memu1</a>
+            </li>
+            <li>
+                <a href="#">Menu2</a>
+            </li>
+            <li>
+                <a href="#">Menu3</a>
+            </li>
+            <li>
+                <a href="#">Menu4</a>
+            </li>
+            <li>
+                <a href="#">Menu5</a>
+            </li>
+            <li>
+                <a href="#">Menu6</a>
+            </li>
+            <li>
+                <a href="#">Menu7</a>
+            </li>
+            <li>
+                <a href="#">Menu8</a>
+            </li>
+            <li>
+                <a href="#">Menu9</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
