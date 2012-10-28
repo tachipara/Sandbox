@@ -4,7 +4,7 @@ create table if not exists user(
     id int(11) not null auto_increment primary key,
     user_id varchar(31) not null unique,
     name varchar(127),
-    email varchar(127) not null,
+    email varchar(127) not null unique,
     created_at datetime not null,
     updated_at datetime not null,
     index user_id_idx(user_id)

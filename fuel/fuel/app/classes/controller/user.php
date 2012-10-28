@@ -30,10 +30,11 @@ class Controller_User extends Controller_Rest
         } catch(Orm\ValidationFailed $ve)
         {
             $code = 400;
-            $error = 'validation error.';
+            $error = $ve->getMessage();
+            //$error = 'validation error.';
         } catch (Exception $e)
         {
-            $code = 400;
+            $code = 500;
             $error = 'post user failed.';
         }
 
@@ -144,11 +145,13 @@ class Controller_User extends Controller_Rest
         } catch(Orm\ValidationFailed $ve)
         {
             $code = 400;
-            $error = 'validation error.';
+            $error = $ve->getMessage();
+            //$error = 'validation error.';
         } catch (Exception $e)
         {
             $code = 500;
-            $error = 'put user failed.';
+            $error = $e->getMessage();
+            //$error = 'put user failed.';
         }
 
         $result = array();
