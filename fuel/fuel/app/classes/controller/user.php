@@ -2,6 +2,37 @@
 
 class Controller_User extends Controller_Rest
 {
+    protected static $_param_defines_post_user = array(
+        'user_id' => array(
+            'validation' => array(
+                'required',
+            ),
+        ),
+    );
+
+    protected static $_param_defines_get_user = array(
+        'user_id' => array(
+            'validation' => array(
+                'required',
+            ),
+        ),
+    );
+
+    protected static $_param_defines_put_user = array(
+        'user_id' => array(
+            'validation' => array(
+                'required',
+            ),
+        ),
+    );
+
+    protected static $_param_defines_delete_user = array(
+        'user_id' => array(
+            'validation' => array(
+                'required',
+            ),
+        ),
+    );
 
     /**
      * @brief post user
@@ -61,6 +92,14 @@ class Controller_User extends Controller_Rest
      */
 	public function get_user()
     {
+        /*
+        var_dump(debug_backtrace());
+        var_dump($this->request->route);
+        var_dump($this->request->get_method());
+        var_dump($this->request->route->path);
+        var_dump($this->request->route->controller);
+        var_dump($this->request->route->action);
+        */
         $params = $this->params(Model_User::USER_ID_PROPERTY);
         if (empty($params[Model_User::USER_ID_PROPERTY]))
         {
