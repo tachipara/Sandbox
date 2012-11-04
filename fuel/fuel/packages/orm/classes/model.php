@@ -1126,7 +1126,7 @@ class Model implements \ArrayAccess, \Iterator
 		// Set all current values
 		foreach ($properties as $p)
 		{
-			if ( ! in_array($p, $primary_key))
+			if ( ! in_array($p, $primary_key) and isset($p, $this->_original[$p]))
 			{
 				$query->set($p, isset($this->_data[$p]) ? $this->_data[$p] : null);
 			}

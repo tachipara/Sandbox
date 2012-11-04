@@ -17,9 +17,6 @@ class Model_User extends \Orm\Model
         self::USER_ID_PROPERTY => array(
             'validation' => array(
                 'trim',
-                'required',
-                'max_length' => array(31),
-                'match_pattern' => array('/^[0-9a-zA-Z_]*$/'),
                 'unique' => array(array(
                     self::TABLE_NAME,
                     self::USER_ID_PROPERTY,
@@ -29,13 +26,11 @@ class Model_User extends \Orm\Model
         self::NAME_PROPERTY => array(
             'validation' => array(
                 'trim',
-                'required',
                 'max_length' => array(127),
             ),
         ),
         self::EMAIL_PROPERTY => array(
             'validation' => array(
-                'required',
                 'max_length' => array(127),
                 'valid_email',
                 'unique' => array(array(

@@ -6,6 +6,20 @@ class Controller_User extends Controller_Rest
         'user_id' => array(
             'validation' => array(
                 'required',
+                'max_length' => array(31),
+                'match_pattern' => array('/^[0-9a-zA-Z_]*$/'),
+            ),
+        ),
+        'email' => array(
+            'validation' => array(
+                'required',
+                'valid_email',
+            ),
+        ),
+        'name' => array(
+            'validation' => array(
+                'required',
+                'max_length' => array(20),
             ),
         ),
     );
@@ -14,6 +28,8 @@ class Controller_User extends Controller_Rest
         'user_id' => array(
             'validation' => array(
                 'required',
+                'max_length' => array(31),
+                'match_pattern' => array('/^[0-9a-zA-Z_]*$/'),
             ),
         ),
     );
@@ -22,6 +38,14 @@ class Controller_User extends Controller_Rest
         'user_id' => array(
             'validation' => array(
                 'required',
+                'max_length' => array(31),
+                'match_pattern' => array('/^[0-9a-zA-Z_]*$/'),
+            ),
+        ),
+        'name' => array(
+            'validation' => array(
+                'required',
+                'max_length' => array(20),
             ),
         ),
     );
@@ -30,6 +54,8 @@ class Controller_User extends Controller_Rest
         'user_id' => array(
             'validation' => array(
                 'required',
+                'max_length' => array(31),
+                'match_pattern' => array('/^[0-9a-zA-Z_]*$/'),
             ),
         ),
     );
@@ -57,7 +83,7 @@ class Controller_User extends Controller_Rest
                 Model_User::NAME_PROPERTY => Input::post(Model_User::NAME_PROPERTY),
                 Model_User::EMAIL_PROPERTY => Input::post(Model_User::EMAIL_PROPERTY),
             ));
-            $user->save();
+            $user->save(null, true);
         } catch(Orm\ValidationFailed $ve)
         {
             $code = 400;
@@ -166,13 +192,24 @@ class Controller_User extends Controller_Rest
         try
         {
             $user = Model_User::find('first', array(
+                'select' => array(
+                    Model_User::NAME_PROPERTY,
+                ),
                 'where' => array(
                     array(Model_User::USER_ID_PROPERTY, $user_id),
                 ),
                 'limit' => array(1),
             ));
-            $user->set(Model_User::NAME_PROPERTY, Input::put(Model_User::NAME_PROPERTY));
-            $user->save();
+            if (!empty($user))
+            {
+                $user->set(Model_User::NAME_PROPERTY, Input::put(Model_User::NAME_PROPERTY));
+                $user->save(null, true);
+            }
+            else
+            {
+                $code = 403;
+                $error = 'user not found.';
+            }
         } catch(Orm\ValidationFailed $ve)
         {
             $code = 400;
